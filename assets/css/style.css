@@ -1,8 +1,56 @@
-.topics {
+
+/*buttons and submit button styling*/
+.topics, #add-character {
   background-color: #a61f43;
   border-radius: 5px;
   font-size: 15px;
   border: none;
   margin: 5px;
   height: 28px;
+  font-family: 'Sunshiney';
+  font-size: 20px;
 }
+/*submit new character form*/
+#character-form {
+  font-family: 'Sunshiney';
+  font-size: 20px;
+  float: right;
+
+}
+/*where gifs are displayed*/
+#gifArea {
+  width:60%;
+  padding-top: 20px;
+
+}
+.gifBox {
+  display: inline-block;
+}
+/*gifs*/
+.gifImg {
+  display: inline-block;
+  padding: 15px;
+}
+
+#newCharacterDiv {
+
+}
+
+
+
+
+
+/*768*/
+@media (min-width: @screen-sm-min) {
+  #character-form {
+    margin-right: 25px;
+    margin-top: -1500px;
+  }
+
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @screen-md-min) { ... }
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @screen-lg-min) { ... }
