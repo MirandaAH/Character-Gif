@@ -19,41 +19,46 @@ function renderButtons() {
 
 // Function to access giphy API using AJAX and printing gif images onto gifArea
 function getImages (x) {
-  // var currentChoice = x;
+  $('#gifArea').empty();
+  $('#character-form').css('margin-top', '-1890px');
   var APIkey = "dc6zaTOxFJmzC";
   // queryURL, topics[i] will be passed through this function onclick buttons
   var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +  x  + "&limit=10&rating=pg-13&api_key="+ APIkey;
   $.ajax({
-    url: queryURL,
-    method: 'GET'
-  }).done(function(response) {
-      console.log(response);
-      for (var i = 0; i < response.data.length; i++){
-        // grab animated gif url and set it to a variable
-        var defaultAnimatedSrc= response.data[i].images.fixed_height.url;
-        // grab static gif url and set it to a variable
-        var staticSrc= response.data[i].images.fixed_height_still.url;
-        // grab the gif rating and set it to a variable
-        var rating = response.data[i].rating;
-        //set variable to create paragraph with rating info
-        var p = $("<p>").text("Rating: " + rating);
-        // set variable to create image html tag
-        var showImage = $('<img>');
-        // set src of image to static image
-        showImage.attr('src', staticSrc);
-        // set class of image to gifImg
-        showImage.addClass('gifImg');
-        // set data-state of image to still
-        showImage.attr('data-state', 'still');
-        // set data-still to src static url
-        showImage.attr('data-still', staticSrc);
-        // set data-animate to src animated url
-        showImage.attr('data-animate', defaultAnimatedSrc);
-        // append rating and gifs to gifArea
-        $('#gifArea').append('<div class="gifBox">' + p + '<br>' + showImage + '</div>');
-      }
-  });
-}
+      url: queryURL,
+      method: 'GET'
+    }).done(function(response) {
+        console.log(response);
+        for (var i = 0; i < response.data.length; i++){
+          // grab animated gif url and set it to a variable
+          var defaultAnimatedSrc= response.data[i].images.fixed_height_small.url;
+          // grab static gif url and set it to a variable
+          var staticSrc= response.data[i].images.fixed_height_small_still.url;
+          // grab the gif rating and set it to a variable
+          var rating = response.data[i].rating;
+          //set variable to create paragraph with rating info
+          var p = $('</p>').html("Rating: " + rating + '<br>');
+          // set id of each p to a unique number
+          p.attr('id', i + 'p');
+          p.addClass('gifs');
+          // set variable to create image html tag
+          var showImage = $('<img>');
+          // set src of image to static image
+          showImage.attr('src', staticSrc);
+          // set class of image to gifImg
+          showImage.addClass('gifImg');
+          // set data-state of image to still
+          showImage.attr('data-state', 'still');
+          // set data-still to src static url
+          showImage.attr('data-still', staticSrc);
+          // set data-animate to src animated url
+          showImage.attr('data-animate', defaultAnimatedSrc);
+          // append rating and gifs to gifArea
+          p.appendTo('#gifArea');
+          showImage.appendTo('#' + i + 'p');
+        }
+    });
+  }
 
 
 
