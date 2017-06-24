@@ -7,11 +7,12 @@ function renderButtons() {
     $('#gifArea').empty(); //clearing the gif div
     for (var i = 0; i < topics.length; i++) { //for loop iterating through the topics array
       var a = $("<button>"); //setting a variable to create an html button tag
-      a.addClass("topics");//add class to button
-      a.attr("data-name", topics[i]);//set data-name to button
-      a.attr('onclick', 'getImages(topics[' + i + '])');//set button onclick function to run
-      // through the getImages function with the current string in the loop
-      a.text(topics[i]);//set text of button to string
+      // TYLER: You can chain the methods below like so:
+      a.addClass("topics")//add class to button
+       .attr("data-name", topics[i])//set data-name to button
+       .attr('onclick', 'getImages(topics[' + i + '])');//set button onclick function to run
+       .text(topics[i]);//set text of button to string
+      // TYLER: Sometimes it's easier to read. Sometimes not.
       // console.log(a);
       $("#newButtons").append(a);//append the buttons to the button div
     }
@@ -78,6 +79,9 @@ function controlGifs () {
     $(this).attr('src', $(this).attr('data-animate'));
     // set state to animate
     $(this).attr('data-state', "animate");
+  // TYLER: Generally, you only need to check for one case. For instance, if `state === 'still'` evaluates to false, 
+  // the other condition would have to be true. You'll run into these a lot going forward, so just wanted to bring it
+  // to your attention so you don't write more code than you have to!
   }else if (state === 'animate'){
     console.log('pause');
     // change the src of this image to static src
